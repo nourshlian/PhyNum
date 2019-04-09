@@ -282,9 +282,9 @@ std::istream& ariel::operator>>(std::istream& is, PhysicalNumber& ps) {
     bool isOk = false;
     string value = in.substr(0, first);
     string unit = in.substr(first+1, last - first - 1 );
-    auto temp_size = std::size(temp);
+    //auto temp_size = std::size(temp);
     double val = stod(value);
-    for(int i=0; i<temp_size; i++){
+    for(int i=0; i<9; i++){
         if(unit == temp[i]){
             isOk = true;
             ps._value = val;
