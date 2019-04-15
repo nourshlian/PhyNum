@@ -23,6 +23,8 @@ int main() {
     PhysicalNumber b(300, Unit::M);
     PhysicalNumber c(2, Unit::HOUR);
     PhysicalNumber d(30, Unit::MIN);
+    PhysicalNumber e(2, Unit::TON);
+
 
     testcase
     .setname("Basic output")
@@ -41,6 +43,8 @@ int main() {
 
     .setname("Incompatible dimensions")
     .CHECK_THROWS(a+c)
+    .CHECK_THROWS(e+a)
+
     .CHECK_THROWS(a+d)
     .CHECK_THROWS(b+c)
     .CHECK_THROWS(b+d)

@@ -277,14 +277,14 @@ std::istream& ariel::operator>>(std::istream& is, PhysicalNumber& ps) {
     int last = in.find(']');
 
     if(first == -1 || last == -1 || first > last){
-        throw "Invalid input";
+        throw std::invalid_argument("error");
     }
     bool isOk = false;
     string value = in.substr(0, first);
     string unit = in.substr(first+1, last - first - 1 );
-    auto temp_size = std::size(temp);
+    //auto temp_size = std::size(temp);
     double val = stod(value);
-    for(int i=0; i<temp_size; i++){
+    for(int i=0; i<9; i++){
         if(unit == temp[i]){
             isOk = true;
             ps._value = val;
@@ -304,7 +304,7 @@ std::istream& ariel::operator>>(std::istream& is, PhysicalNumber& ps) {
         }
     }
     if(isOk == false)
-        throw "Invalid input";
+       throw std::invalid_argument("error");
 return is;
 }
 
