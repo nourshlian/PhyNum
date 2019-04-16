@@ -158,7 +158,7 @@ PhysicalNumber PhysicalNumber::operator+(const PhysicalNumber& ps) const{
 
     return PhysicalNumber(tmp , this->_unit);
     }
-    else throw std::invalid_argument("error"); 
+    else throw std::invalid_argument("Invalid match!"); 
     
 }
 
@@ -275,20 +275,20 @@ std::istream& ariel::operator>>(std::istream& is, PhysicalNumber& ps) {
     string temp[] = {"cm", "m", "km", "g", "kg", "ton", "sec", "min", "hour"};
     int first = in.find('[');
     int last = in.find(']');
-    int len = in.length();
+    //int len = in.length();
 
-    if(first == -1 || last == -1 || first > last || len > last+1){
-        throw std::invalid_argument("error");
+    if(first == -1 || last == -1 || first > last){//} || len > last+1){
+        throw std::invalid_argument("Invalid input");
     }
     bool isOk = false;
     string value = in.substr(0, first);
     string unit = in.substr(first+1, last - first - 1 );
     //auto temp_size = std::size(temp);
-    for(int i=0; i<value.length(); i++){
-        char c = value[i];
-        if(c != '-' && c < '0' || c > '9')
-            throw std::invalid_argument("error");
-    }
+    // for(int i=0; i<value.length(); i++){
+    //     char c = value[i];
+    //     if(c != '-' && c < '0' || c > '9')
+    //         throw std::invalid_argument("error");
+    // }
     double val = stod(value);
     for(int i=0; i<9; i++){
         if(unit == temp[i]){
@@ -310,7 +310,7 @@ std::istream& ariel::operator>>(std::istream& is, PhysicalNumber& ps) {
         }
     }
     if(isOk == false)
-       throw std::invalid_argument("error");
+       throw std::invalid_argument("Invalid input");
 return is;
 }
 
