@@ -278,7 +278,7 @@ std::istream& ariel::operator>>(std::istream& is, PhysicalNumber& ps) {
     //int len = in.length();
 
     if(first == -1 || last == -1 || first > last){//} || len > last+1){
-        throw std::invalid_argument("Invalid input");
+        return;
     }
     bool isOk = false;
     string value = in.substr(0, first);
