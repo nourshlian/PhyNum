@@ -151,13 +151,21 @@ PhysicalNumber PhysicalNumber::operator+(const PhysicalNumber& ps) const{
             break;
 
         }
+
+
+
+
+
     return PhysicalNumber(tmp , this->_unit);
-    }    
+    }
+    else throw std::invalid_argument("Invalid match"); 
+    
 }
 
 PhysicalNumber PhysicalNumber::operator-(const PhysicalNumber& ps) const{
     PhysicalNumber tmp = PhysicalNumber(ps._value * -1, ps._unit);
     return (*this) + tmp ;
+
 }
 
 PhysicalNumber PhysicalNumber::operator+() const{return PhysicalNumber(this->_value, this->_unit);}
@@ -263,20 +271,15 @@ std::ostream& ariel::operator<<(std::ostream& os , const PhysicalNumber& ps){
 std::istream& ariel::operator>>(std::istream& is, PhysicalNumber& ps) {
     std::string in;
     is >> in;
-    std::ios::pos_type startPosition = is.tellg();
 
     string temp[] = {"cm", "m", "km", "g", "kg", "ton", "sec", "min", "hour"};
     int first = in.find('[');
     int last = in.find(']');
     //int len = in.length();
 
-    if(first == -1 || last == -1 || first > last){
-        auto errorState = is.rdstate(); // remember error state
-        is.clear(); // clear error so seekg will work
-        is.seekg(startPosition); // rewind
-        is.clear(errorState); // set back the error flag
-    return is;
-}
+    if(first == -1 || last == -1 || first > last){//} || len > last+1){
+        throw std::invalid_argument("Invalid input");
+    }
     bool isOk = false;
     string value = in.substr(0, first);
     string unit = in.substr(first+1, last - first - 1 );
@@ -306,13 +309,8 @@ std::istream& ariel::operator>>(std::istream& is, PhysicalNumber& ps) {
             }
         }
     }
-    if(isOk == false){
-        auto errorState = is.rdstate(); // remember error state
-        is.clear(); // clear error so seekg will work
-        is.seekg(startPosition); // rewind
-        is.clear(errorState); // set back the error flag
-        return is;
-    }
+    if(isOk == false)
+       throw std::invalid_argument("Invalid input");
 return is;
 }
 
