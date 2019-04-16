@@ -33,27 +33,27 @@ namespace ariel {
             PhysicalNumber& operator=(const PhysicalNumber&);
 
             bool operator==(const PhysicalNumber&); 
-		    bool operator<(const PhysicalNumber&); 
-		    bool operator!=(const PhysicalNumber&);
-		    bool operator<=(const PhysicalNumber&); 
-		    bool operator>=(const PhysicalNumber&); 
-		    bool operator>(const PhysicalNumber&);
+		        bool operator<(const PhysicalNumber&); 
+		        bool operator!=(const PhysicalNumber&);
+		        bool operator<=(const PhysicalNumber&); 
+		        bool operator>=(const PhysicalNumber&); 
+		        bool operator>(const PhysicalNumber&);
 
             const PhysicalNumber operator++(int); 
-		    const PhysicalNumber operator--(int);
+		        const PhysicalNumber operator--(int);
 		
-		    PhysicalNumber& operator++(); 
-		    PhysicalNumber& operator--();
+		        PhysicalNumber& operator++(); 
+		        PhysicalNumber& operator--();
 
             friend std::ostream& operator<<(std::ostream&, const PhysicalNumber&);
-		    friend std::istream& operator>>(std::istream&, PhysicalNumber&);
+		        friend std::istream& operator>>(std::istream&, PhysicalNumber&);
 
 
 
 
     };
-      std::ostream& operator<<(std::ostream&, const PhysicalNumber&);
-      std::istream& operator>>(std::istream&, PhysicalNumber&);
+    std::ostream& operator<<(std::ostream&, const PhysicalNumber&);
+    std::istream& operator>>(std::istream&, PhysicalNumber&);
 
 }
 #endif
